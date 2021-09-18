@@ -11,19 +11,17 @@ public struct Message {
     public let body: Data
     
     public init?(data: Data) {
-        guard let firstByte = data.first else { return nil }
-        let isLongMessage = firstByte > 0x7f
+        guard data.count >= 3 else { return nil }
+        
+        let isLongMessage = data[0] > 0x7f
+        let length = Int(data[0] & 0x7f) + (isLongMessage ? Int(data[1]) << 7 : 0)
         let bodyIndex = isLongMessage ? 4 : 3
-        guard data.count >= bodyIndex else { return nil }
         
-        if isLongMessage {
-            self.length = Int(firstByte & 0x7f) + (Int(data[1]) << 7)
-        } else {
-            self.length = Int(firstByte)
-        }
-        
+        let data = data.prefix(length)
+        guard data.count == length, data.count >= bodyIndex else { return nil }
         guard let messageType = MessageType(rawValue: data[bodyIndex - 1]) else { return nil }
         
+        self.length = length
         self.messageType = messageType
         self.body = data.suffix(from: bodyIndex)
     }
