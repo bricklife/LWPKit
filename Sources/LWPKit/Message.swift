@@ -13,7 +13,7 @@ public struct Message {
     public init?(data: Data) {
         guard data.count >= 3 else { return nil }
         
-        let isLongMessage = data[0] > 0x7f
+        let isLongMessage = data[0] & 0x80 > 0
         let length = Int(data[0] & 0x7f) + (isLongMessage ? Int(data[1]) << 7 : 0)
         let bodyIndex = isLongMessage ? 4 : 3
         
