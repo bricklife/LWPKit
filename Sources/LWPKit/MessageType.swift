@@ -4,16 +4,16 @@ import Foundation
 
 public enum MessageType: UInt8 {
     
-    case hubProperties              = 0x01
-    case hubActions                 = 0x02
-    case hubAlerts                  = 0x03
-    case hubAttachedIO              = 0x04
-    case genericErrorMessages       = 0x05
-    case hwNetWorkCommands          = 0x08
-    case fwUpdateGoIntoBootMode     = 0x10
-    case fwUpdateLockMemory         = 0x11
-    case fwUpdateLockStatusRequest  = 0x12
-    case fwLockStatus               = 0x13
+    case hubProperties                      = 0x01
+    case hubActions                         = 0x02
+    case hubAlerts                          = 0x03
+    case hubAttachedIO                      = 0x04
+    case genericErrorMessages               = 0x05
+    case hardwareNetWorkCommands            = 0x08
+    case firmwareUpdateGoIntoBootMode       = 0x10
+    case firmwareUpdateLockMemory           = 0x11
+    case firmwareUpdateLockStatusRequest    = 0x12
+    case firmwareLockStatus                 = 0x13
     
     case portInformationRequest             = 0x21
     case portModeInformationRequest         = 0x22
@@ -44,15 +44,15 @@ extension MessageType: CustomStringConvertible {
             return "Hub Attached I/O"
         case .genericErrorMessages:
             return "Generic Error Messages"
-        case .hwNetWorkCommands:
+        case .hardwareNetWorkCommands:
             return "H/W NetWork Commands"
-        case .fwUpdateGoIntoBootMode:
+        case .firmwareUpdateGoIntoBootMode:
             return "F/W Update - Go Into Boot Mode"
-        case .fwUpdateLockMemory:
+        case .firmwareUpdateLockMemory:
             return "F/W Update Lock memory"
-        case .fwUpdateLockStatusRequest:
+        case .firmwareUpdateLockStatusRequest:
             return "F/W Update Lock Status Request"
-        case .fwLockStatus:
+        case .firmwareLockStatus:
             return "F/W Lock Status"
         case .portInformationRequest:
             return "Port Information Request"
