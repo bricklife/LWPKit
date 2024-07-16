@@ -2,7 +2,7 @@
 ///
 /// [3.32. Port Output Command Feedback](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-output-command-feedback)
 public struct PortOutputCommandFeedback: Message {
-    public static var messageType = MessageType.portOutputCommandFeedback
+    public static let messageType = MessageType.portOutputCommandFeedback
 
     public let feedbacks: [Feedback]
 

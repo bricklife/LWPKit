@@ -1,4 +1,4 @@
-public struct ByteCollectionView<C: ByteCollection> {
+public struct ByteCollectionView<C: ByteCollection>: Sendable {
     public let bytes: C
 
     public init(_ bytes: C) {
@@ -100,13 +100,13 @@ extension ByteCollectionView {
 }
 
 extension ByteCollectionView {
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, Sendable {
         case outOfRange(index: C.Index, endIndex: C.Index)
         case undefined(type: any RawRepresentable.Type, rawValue: RawValue)
         case invalidBytes
     }
 
-    public enum RawValue {
+    public enum RawValue: Sendable {
         case uint8(UInt8)
         case int8(Int8)
         case uint16(UInt16)

@@ -2,7 +2,7 @@
 ///
 /// [3.21. Port Value (Single)](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-value-single)
 public struct PortValueSingle: Message {
-    public static var messageType = MessageType.portValueSingle
+    public static let messageType = MessageType.portValueSingle
 
     public let portID: UInt8
     public let inputValue: [UInt8]

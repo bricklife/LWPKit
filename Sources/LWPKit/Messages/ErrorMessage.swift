@@ -2,7 +2,7 @@
 ///
 /// [3.9. Generic Error Messages](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#generic-error-messages)
 public struct ErrorMessage: Message {
-    public static var messageType = MessageType.genericErrorMessages
+    public static let messageType = MessageType.genericErrorMessages
 
     public let commandType: UInt8
     public let errorCode: ErrorCode

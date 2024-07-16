@@ -2,7 +2,7 @@
 ///
 /// [3.20. Port Mode Information](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-mode-information)
 public struct PortModeInformation: Message {
-    public static var messageType = MessageType.portModeInformation
+    public static let messageType = MessageType.portModeInformation
 
     public let portID: UInt8
     public let mode: UInt8

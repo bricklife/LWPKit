@@ -2,7 +2,7 @@
 ///
 /// [3.5. Hub Properties](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#hub-properties)
 public struct HubPropertyMessage: Message {
-    public static var messageType = MessageType.hubProperties
+    public static let messageType = MessageType.hubProperties
 
     public let property: HubProperty
     public let operation: HubProperty.Operation

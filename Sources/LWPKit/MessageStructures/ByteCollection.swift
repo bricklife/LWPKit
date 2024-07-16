@@ -1,20 +1,8 @@
 import Foundation
 
-public typealias ByteCollection = RandomAccessCollection<UInt8>
+public protocol ByteCollection: RandomAccessCollection<UInt8>, Sendable where Self.Index: Sendable, Self.SubSequence: ByteCollection {}
 
-public protocol ByteCollectionDecodable {
-    init(_ bytes: some ByteCollection) throws
-}
+extension Data: ByteCollection {}
 
-public protocol ByteCollectionEncodable {
-    func bytes() throws -> [UInt8]
-    func data() throws -> Data
-}
-
-extension ByteCollectionEncodable {
-    public func data() throws -> Data {
-        return try Data(bytes())
-    }
-}
-
-public typealias ByteCollectionCodable = ByteCollectionDecodable & ByteCollectionEncodable
+extension Array<UInt8>.SubSequence: ByteCollection {}
+extension Array<UInt8>: ByteCollection {}

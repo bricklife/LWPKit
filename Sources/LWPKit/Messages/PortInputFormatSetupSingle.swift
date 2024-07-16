@@ -2,7 +2,7 @@
 ///
 /// [3.17. Port Input Format Setup (Single)](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-input-format-setup-single)
 public struct PortInputFormatSetupSingle: Message {
-    public static var messageType = MessageType.portInputFormatSetupSingle
+    public static let messageType = MessageType.portInputFormatSetupSingle
 
     public let portID: UInt8
     public let mode: UInt8

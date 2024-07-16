@@ -2,7 +2,7 @@
 ///
 /// [3.8. Hub Attached I/O](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#hub-attached-i-o)
 public struct HubAttachedIOMessage: Message {
-    public static var messageType = MessageType.hubAttachedIO
+    public static let messageType = MessageType.hubAttachedIO
 
     public let portID: UInt8
     public let event: Event
