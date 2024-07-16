@@ -1,10 +1,7 @@
-/**
- IO Type
- 
- [3.8.4. IO Type ID](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#io-type-id)
- */
+/// IO Type
+///
+/// [3.8.4. IO Type ID](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#io-type-id)
 public enum IOType: UInt16, Sendable {
-    
     case mediumMotor                = 0x0001
     case trainMotor                 = 0x0002
     case light                      = 0x0008
@@ -46,11 +43,10 @@ public enum IOType: UInt16, Sendable {
 }
 
 extension IOType {
-    
     public var isMotor: Bool {
         return description.contains("Motor")
     }
-    
+
     public var isDCMotor: Bool {
         switch self {
         case .mediumMotor, .trainMotor, .trainBaseMotor:
@@ -59,14 +55,13 @@ extension IOType {
             return false
         }
     }
-    
+
     public var hasRotationSensor: Bool {
         return isMotor && !isDCMotor
     }
 }
 
 extension IOType: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .mediumMotor:

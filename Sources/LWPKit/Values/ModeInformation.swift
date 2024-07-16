@@ -1,10 +1,7 @@
-/**
- Mode Information
- 
- [3.16.2. Mode Information Types](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mode-information-types)
- */
+/// Mode Information
+///
+/// [3.16.2. Mode Information Types](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mode-information-types)
 public enum ModeInformation: Sendable {
-    
     public enum InformationType: UInt8, CaseIterable, Sendable {
         case name           = 0x00
         case raw            = 0x01
@@ -16,7 +13,7 @@ public enum ModeInformation: Sendable {
         case capabilityBits = 0x08
         case valueFormat    = 0x80
     }
-    
+
     public enum Encoding: Sendable {
         case string
         case range
@@ -25,26 +22,25 @@ public enum ModeInformation: Sendable {
         case array
         case valueFormat
     }
-    
+
     public enum Value: Sendable {
         case string(String)
         case range(ClosedRange<Float>)
         case uint8(UInt8)
         case mapping(input: Mapping, output: Mapping)
-        case array(Array<UInt8>)
+        case array([UInt8])
         case valueFormat(ValueFormat)
     }
 }
 
 extension ModeInformation {
-    
     public struct Mapping: OptionSet, Sendable {
         public let rawValue: UInt8
-        
+
         public init(rawValue: UInt8) {
             self.rawValue = rawValue
         }
-        
+
         public static let supportsNullValue             = Mapping(rawValue: 1 << 7)
         public static let supportsFunctionalMapping2_0  = Mapping(rawValue: 1 << 6)
         public static let absolute                      = Mapping(rawValue: 1 << 4)
@@ -54,13 +50,12 @@ extension ModeInformation {
 }
 
 extension ModeInformation {
-    
     public struct ValueFormat: Sendable {
         public let numberOfDatasets: UInt8
         public let datasetType: DataSet
         public let totalFigures: UInt8
         public let decimalsIfAny: UInt8
-        
+
         public enum DataSet: UInt8, Sendable {
             case bit8   = 0x00
             case bit16  = 0x01
@@ -71,7 +66,6 @@ extension ModeInformation {
 }
 
 extension ModeInformation.InformationType {
-    
     public var encoding: ModeInformation.Encoding {
         switch self {
         case .name:
@@ -94,15 +88,15 @@ extension ModeInformation.InformationType {
             return .valueFormat
         }
     }
-    
+
     public func value(payload: some ByteCollection) throws -> ModeInformation.Value {
         let view = payload.view
-        
-        switch encoding  {
+
+        switch encoding {
         case .string:
             return try .string(view.string(0))
         case .range:
-            return try .range(view.float(0) ... view.float(4))
+            return try .range(view.float(0)...view.float(4))
         case .uint8:
             return try .uint8(view.uint8(0))
         case .mapping:
@@ -112,17 +106,18 @@ extension ModeInformation.InformationType {
         case .array:
             return .array(Array(payload))
         case .valueFormat:
-            let valueFormat = ModeInformation.ValueFormat(numberOfDatasets: try view.uint8(0),
-                                                          datasetType: try view.rawRepresentable(1),
-                                                          totalFigures: try view.uint8(2),
-                                                          decimalsIfAny: try view.uint8(3))
+            let valueFormat = ModeInformation.ValueFormat(
+                numberOfDatasets: try view.uint8(0),
+                datasetType: try view.rawRepresentable(1),
+                totalFigures: try view.uint8(2),
+                decimalsIfAny: try view.uint8(3)
+            )
             return .valueFormat(valueFormat)
         }
     }
 }
 
 extension ModeInformation.InformationType: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .name:
@@ -148,7 +143,6 @@ extension ModeInformation.InformationType: CustomStringConvertible {
 }
 
 extension ModeInformation.Mapping: CustomStringConvertible {
-    
     public var description: String {
         let strings: [String?] = [
             contains(.supportsNullValue) ? "Supports NULL value" : nil,
@@ -163,7 +157,6 @@ extension ModeInformation.Mapping: CustomStringConvertible {
 }
 
 extension ModeInformation.ValueFormat.DataSet: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .bit8:
@@ -179,7 +172,6 @@ extension ModeInformation.ValueFormat.DataSet: CustomStringConvertible {
 }
 
 extension ModeInformation.Value: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .string(let string):
@@ -188,8 +180,8 @@ extension ModeInformation.Value: CustomStringConvertible {
             return range.description
         case .uint8(let uint8):
             return uint8.description
-        case .mapping(input: let input, output: let outout):
-            return "Input: \(input)\nOutput: \(outout)"
+        case .mapping(let input, let output):
+            return "Input: \(input)\nOutput: \(output)"
         case .array(let array):
             return array.description
         case .valueFormat(let valueFormat):

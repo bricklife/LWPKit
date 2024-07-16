@@ -1,10 +1,7 @@
-/**
- Color
- 
- No documentation
- */
+/// Color
+///
+/// No documentation
 public enum Color: UInt8, CaseIterable, Sendable {
-    
     case black      = 0x00
     case pink       = 0x01
     case purple     = 0x02
@@ -20,7 +17,6 @@ public enum Color: UInt8, CaseIterable, Sendable {
 }
 
 extension Color: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .black:

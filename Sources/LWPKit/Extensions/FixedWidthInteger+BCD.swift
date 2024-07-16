@@ -1,5 +1,4 @@
 extension FixedWidthInteger {
-    
     public var binaryCodedDecimal: Self? {
         let numOfDigit = bitWidth / 4
         var value: Self = 0

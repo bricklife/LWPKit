@@ -1,10 +1,7 @@
-/**
- Hub Property
- 
- [3.5.1. Hub Property and Operation](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#hub-property-and-operation)
- */
+/// Hub Property
+///
+/// [3.5.1. Hub Property and Operation](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#hub-property-and-operation)
 public enum HubProperty: UInt8, CaseIterable, Sendable {
-    
     case advertisingName                = 0x01
     case button                         = 0x02
     case firmwareVersion                = 0x03
@@ -24,7 +21,6 @@ public enum HubProperty: UInt8, CaseIterable, Sendable {
 }
 
 extension HubProperty {
-    
     public enum Operation: UInt8, CaseIterable, Sendable {
         case set            = 0x01
         case enableUpdates  = 0x02
@@ -33,7 +29,7 @@ extension HubProperty {
         case requestUpdate  = 0x05
         case update         = 0x06
     }
-    
+
     public var operations: [Operation] {
         switch self {
         case .advertisingName, .speakerVolume:
@@ -51,7 +47,6 @@ extension HubProperty {
 }
 
 extension HubProperty {
-    
     public enum Encoding: Sendable {
         case bool
         case uint8
@@ -61,7 +56,7 @@ extension HubProperty {
         case lwpVersionNumber
         case macAddress
     }
-    
+
     public var encoding: Encoding {
         switch self {
         case .advertisingName:
@@ -101,7 +96,6 @@ extension HubProperty {
 }
 
 extension HubProperty {
-    
     public enum Value: Sendable {
         case bool(Bool)
         case uint8(UInt8)
@@ -111,29 +105,29 @@ extension HubProperty {
         case lwpVersionNumber(LWPVersionNumber)
         case macAddress(MacAddress)
     }
-    
+
     public func value(payload: some ByteCollection) throws -> Value {
         let view = payload.view
-        
+
         switch encoding {
         case .bool:
             return .bool(try view.uint8(0) > 0)
-            
+
         case .uint8:
             return .uint8(try view.uint8(0))
-            
+
         case .int8:
             return .int8(try view.int8(0))
-            
+
         case .string:
             return .string(try view.string(0))
-            
+
         case .versionNumber:
             return .versionNumber(try VersionNumber(payload))
-            
+
         case .lwpVersionNumber:
             return .lwpVersionNumber(try LWPVersionNumber(payload))
-            
+
         case .macAddress:
             return .macAddress(try MacAddress(payload))
         }
@@ -141,7 +135,6 @@ extension HubProperty {
 }
 
 extension HubProperty.Value {
-    
     public func bytes() -> [UInt8] {
         switch self {
         case .bool(let value):
@@ -153,13 +146,12 @@ extension HubProperty.Value {
         case .string(let value):
             return Array(value.utf8)
         case .versionNumber, .lwpVersionNumber, .macAddress:
-            return [] // Never used
+            return []  // Never used
         }
     }
 }
 
 extension HubProperty: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .advertisingName:
@@ -199,7 +191,6 @@ extension HubProperty: CustomStringConvertible {
 }
 
 extension HubProperty.Operation: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .set:
@@ -219,7 +210,6 @@ extension HubProperty.Operation: CustomStringConvertible {
 }
 
 extension HubProperty.Value: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .bool(let bool):

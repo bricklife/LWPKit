@@ -1,10 +1,7 @@
-/**
- Message Type
- 
- [3.3. Message Types](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#message-types)
- */
+/// Message Type
+///
+/// [3.3. Message Types](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#message-types)
 public enum MessageType: UInt8, Sendable {
-    
     case hubProperties                      = 0x01
     case hubActions                         = 0x02
     case hubAlerts                          = 0x03
@@ -15,7 +12,7 @@ public enum MessageType: UInt8, Sendable {
     case firmwareUpdateLockMemory           = 0x11
     case firmwareUpdateLockStatusRequest    = 0x12
     case firmwareLockStatus                 = 0x13
-    
+
     case portInformationRequest             = 0x21
     case portModeInformationRequest         = 0x22
     case portInputFormatSetupSingle         = 0x41
@@ -32,7 +29,6 @@ public enum MessageType: UInt8, Sendable {
 }
 
 extension MessageType: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .hubProperties:

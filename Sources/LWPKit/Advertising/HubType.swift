@@ -1,10 +1,7 @@
-/**
- Hub Type (System Type and Device Number)
- 
- [2.1. System Type and Device Number](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#system-type-and-device-number)
- */
+/// Hub Type (System Type and Device Number)
+///
+/// [2.1. System Type and Device Number](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#system-type-and-device-number)
 public enum HubType: UInt8, CaseIterable, Sendable {
-    
     case duploTrain     = 0x20
     case boost          = 0x40
     case poweredUp      = 0x41
@@ -17,7 +14,6 @@ public enum HubType: UInt8, CaseIterable, Sendable {
 }
 
 extension HubType: CustomStringConvertible {
-    
     public var description: String {
         switch self {
         case .duploTrain:

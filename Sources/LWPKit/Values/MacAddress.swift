@@ -1,22 +1,18 @@
-/**
- Mac address
- 
- No documentation
- */
+/// Mac address
+///
+/// No documentation
 public struct MacAddress: Sendable {
-    
     public let octets: [UInt8]
-    
+
     public init(octets: [UInt8]) {
         self.octets = octets
     }
 }
 
 extension MacAddress: ByteCollectionDecodable {
-    
     public init(_ bytes: some ByteCollection) throws {
         let view = bytes.view
-        
+
         self.octets = [
             try view.uint8(0),
             try view.uint8(1),
@@ -29,8 +25,7 @@ extension MacAddress: ByteCollectionDecodable {
 }
 
 extension MacAddress: CustomStringConvertible {
-    
     public var description: String {
-        return octets.map({ String(format: "%02x", $0)}).joined(separator: ":")
+        return octets.map({ String(format: "%02x", $0) }).joined(separator: ":")
     }
 }
