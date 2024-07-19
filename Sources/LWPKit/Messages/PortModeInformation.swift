@@ -4,12 +4,12 @@
 public struct PortModeInformation: Message {
     public static let messageType = MessageType.portModeInformation
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let mode: UInt8
     public let type: ModeInformation.InformationType
     public let value: ModeInformation.Value
 
-    public init(portID: UInt8, mode: UInt8, type: ModeInformation.InformationType, value: ModeInformation.Value) {
+    public init(portID: Port.RawValue, mode: UInt8, type: ModeInformation.InformationType, value: ModeInformation.Value) {
         self.portID = portID
         self.mode = mode
         self.type = type

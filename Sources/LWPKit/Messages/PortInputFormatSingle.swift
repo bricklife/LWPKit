@@ -4,12 +4,12 @@
 public struct PortInputFormatSingle: Message {
     public static let messageType = MessageType.portInputFormatSingle
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let mode: UInt8
     public let deltaInterval: UInt32
     public let notificationEnabled: Bool
 
-    public init(portID: UInt8, mode: UInt8, deltaInterval: UInt32, notificationEnabled: Bool) {
+    public init(portID: Port.RawValue, mode: UInt8, deltaInterval: UInt32, notificationEnabled: Bool) {
         self.portID = portID
         self.mode = mode
         self.deltaInterval = deltaInterval

@@ -4,10 +4,10 @@
 public struct HubAttachedIOMessage: Message {
     public static let messageType = MessageType.hubAttachedIO
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let event: Event
 
-    public init(portID: UInt8, event: Event) {
+    public init(portID: Port.RawValue, event: Event) {
         self.portID = portID
         self.event = event
     }
@@ -24,8 +24,8 @@ extension HubAttachedIOMessage {
 extension HubAttachedIOMessage {
     public enum Event: Sendable {
         case detachedIO
-        case attachedIO(ioTypeID: UInt16, hardwareRevision: VersionNumber, softwareRevision: VersionNumber)
-        case attachedVirtualIO(ioTypeID: UInt16, firstPortID: UInt8, secondPortID: UInt8)
+        case attachedIO(ioTypeID: IOType.RawValue, hardwareRevision: VersionNumber, softwareRevision: VersionNumber)
+        case attachedVirtualIO(ioTypeID: IOType.RawValue, firstPortID: Port.RawValue, secondPortID: Port.RawValue)
 
         public init(eventID: IOEvent, payload: some ByteCollection) throws {
             let view = payload.view

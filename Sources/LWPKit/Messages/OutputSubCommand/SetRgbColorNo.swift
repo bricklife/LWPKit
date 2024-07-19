@@ -4,11 +4,11 @@
 public struct SetRgbColorNo: WriteDirectModeData {
     public let mode: UInt8 = 0x00
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let startupAndCompletionInformation: UInt8
     public let color: Color
 
-    public init(portID: UInt8, startupAndCompletionInformation: UInt8 = 0x11, color: Color) {
+    public init(portID: Port.RawValue, startupAndCompletionInformation: UInt8 = 0x11, color: Color) {
         self.portID = portID
         self.startupAndCompletionInformation = startupAndCompletionInformation
         self.color = color

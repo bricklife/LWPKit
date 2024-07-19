@@ -5,15 +5,14 @@ import Foundation
 /// [2. Advertising](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#document-2-Advertising)
 public struct ManufacturerData: Sendable {
     public let buttonState: Bool
-    public let hubType: HubType
+    public let hubTypeID: HubType.RawValue
 
     public init?(data: Data) {
         guard data.count == 8 else { return nil }
-        guard data[0] == 0x97, data[1] == 0x03 else { return nil }
+        let startIndex = data.startIndex
+        guard data[startIndex] == 0x97, data[startIndex + 1] == 0x03 else { return nil }
 
-        self.buttonState = data[2] != 0
-
-        guard let hubType = HubType(rawValue: data[3]) else { return nil }
-        self.hubType = hubType
+        self.buttonState = data[startIndex + 2] != 0
+        self.hubTypeID = data[startIndex + 3]
     }
 }

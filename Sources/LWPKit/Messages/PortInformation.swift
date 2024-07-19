@@ -4,10 +4,10 @@
 public struct PortInformation: Message {
     public static let messageType = MessageType.portInformation
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let information: Information
 
-    public init(portID: UInt8, information: Information) {
+    public init(portID: Port.RawValue, information: Information) {
         self.portID = portID
         self.information = information
     }

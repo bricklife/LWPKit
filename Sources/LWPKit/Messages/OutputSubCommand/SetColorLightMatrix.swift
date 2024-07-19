@@ -4,14 +4,14 @@
 public struct SetColorLightMatrix: WriteDirectModeData {
     public let mode: UInt8 = 0x02
 
-    public let portID: UInt8
+    public let portID: Port.RawValue
     public let startupAndCompletionInformation: UInt8
     public let colorIDs: [Color]
     public let colorLevels: [UInt8]
 
     public static let defaultColorLevels: [UInt8] = .init(repeating: 0x0a, count: 9)
 
-    public init(portID: UInt8, startupAndCompletionInformation: UInt8 = 0x11, colorIDs: [Color], colorLevels: [UInt8] = defaultColorLevels) {
+    public init(portID: Port.RawValue, startupAndCompletionInformation: UInt8 = 0x11, colorIDs: [Color], colorLevels: [UInt8] = defaultColorLevels) {
         self.portID = portID
         self.startupAndCompletionInformation = startupAndCompletionInformation
         self.colorIDs = colorIDs
