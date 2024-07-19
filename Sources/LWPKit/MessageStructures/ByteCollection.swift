@@ -4,5 +4,5 @@ public protocol ByteCollection: RandomAccessCollection<UInt8>, Sendable where Se
 
 extension Data: ByteCollection {}
 
-extension Array<UInt8>.SubSequence: ByteCollection {}
-extension Array<UInt8>: ByteCollection {}
+extension [UInt8].SubSequence: ByteCollection {}
+extension [UInt8]: ByteCollection {}
