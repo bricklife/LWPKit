@@ -112,22 +112,16 @@ extension HubProperty {
         switch encoding {
         case .bool:
             return .bool(try view.uint8(0) > 0)
-
         case .uint8:
             return .uint8(try view.uint8(0))
-
         case .int8:
             return .int8(try view.int8(0))
-
         case .string:
             return .string(try view.string(0))
-
         case .versionNumber:
             return .versionNumber(try VersionNumber(payload))
-
         case .lwpVersionNumber:
             return .lwpVersionNumber(try LWPVersionNumber(payload))
-
         case .macAddress:
             return .macAddress(try MacAddress(payload))
         }
