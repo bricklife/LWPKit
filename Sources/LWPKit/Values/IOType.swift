@@ -135,9 +135,9 @@ extension IOType: CustomStringConvertible {
         case .smallAngularMotor:
             return "Small Angular Motor"
         case .moveHubUnknown0042:
-            return "Unknown 0x0042"
+            return "Unknown 0042"
         case .marioUnknown0046:
-            return "Unknown 0x0046"
+            return "Unknown 0046"
         case .marioAccelerometer:
             return "Mario Accelerometer"
         case .marioColorBarcodeSensor:
@@ -149,9 +149,9 @@ extension IOType: CustomStringConvertible {
         case .largeAngularMotorGray:
             return "Large Angular Motor (Gray)"
         case .spikeEssentialUnknown004e:
-            return "Unknown 0x004e"
+            return "Unknown 004e"
         case .marioUnknown0055:
-            return "Unknown 0x0055"
+            return "Unknown 0055"
         }
     }
 }
