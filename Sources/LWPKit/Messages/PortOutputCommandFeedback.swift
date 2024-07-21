@@ -13,8 +13,8 @@ public struct PortOutputCommandFeedback: Message {
 
 extension PortOutputCommandFeedback {
     public struct Feedback: Sendable {
-        let portID: Port.RawValue
-        let feedbackMessage: Message
+        public let portID: Port.RawValue
+        public let feedbackMessage: Message
 
         public struct Message: OptionSet, Sendable {
             public let rawValue: UInt8
