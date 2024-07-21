@@ -4,10 +4,10 @@
 public struct PortValueSingle: Message {
     public static let messageType = MessageType.portValueSingle
 
-    public let portID: Port.RawValue
+    public let portID: Port.ID
     public let inputValue: [UInt8]
 
-    public init(portID: Port.RawValue, inputValue: [UInt8]) {
+    public init(portID: Port.ID, inputValue: [UInt8]) {
         self.portID = portID
         self.inputValue = inputValue
     }

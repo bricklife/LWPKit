@@ -1,7 +1,7 @@
 /// Port
 ///
 /// [3.8.2. Port ID](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-id)
-public enum Port: UInt8, CaseIterable, Sendable {
+public enum Port: UInt8, IDRepresentable, CaseIterable, Sendable {
     case A  = 0x00
     case B  = 0x01
     case C  = 0x02

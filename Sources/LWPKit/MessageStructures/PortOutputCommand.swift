@@ -2,7 +2,7 @@
 ///
 /// [3.26. Port Output Command](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-output-command)
 public protocol PortOutputCommand: EncodableMessage {
-    var portID: Port.RawValue { get }
+    var portID: Port.ID { get }
     var startupAndCompletionInformation: UInt8 { get }  // TODO: Use struct??
     var subCommand: UInt8 { get }
 

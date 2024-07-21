@@ -4,13 +4,13 @@
 public struct StartSpeed: PortOutputCommand {
     public let subCommand: UInt8 = 0x07
 
-    public let portID: Port.RawValue
+    public let portID: Port.ID
     public let startupAndCompletionInformation: UInt8
     public let speed: Int8
     public let maxPower: Int8
     public let useProfile: Int8  // TODO: Use struct??
 
-    public init(portID: Port.RawValue, startupAndCompletionInformation: UInt8 = 0x11, speed: Int8, maxPower: Int8 = 100, useProfile: Int8 = 0x03) {
+    public init(portID: Port.ID, startupAndCompletionInformation: UInt8 = 0x11, speed: Int8, maxPower: Int8 = 100, useProfile: Int8 = 0x03) {
         self.portID = portID
         self.startupAndCompletionInformation = startupAndCompletionInformation
         self.speed = speed

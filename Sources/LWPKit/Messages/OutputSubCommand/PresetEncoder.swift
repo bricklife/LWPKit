@@ -4,11 +4,11 @@
 public struct PresetEncoder: WriteDirectModeData {
     public let mode: UInt8 = 0x02
 
-    public let portID: Port.RawValue
+    public let portID: Port.ID
     public let startupAndCompletionInformation: UInt8
     public let position: Int32
 
-    public init(portID: Port.RawValue, startupAndCompletionInformation: UInt8 = 0x11, position: Int32) {
+    public init(portID: Port.ID, startupAndCompletionInformation: UInt8 = 0x11, position: Int32) {
         self.portID = portID
         self.startupAndCompletionInformation = startupAndCompletionInformation
         self.position = position
