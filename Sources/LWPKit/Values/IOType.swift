@@ -35,6 +35,7 @@ public enum IOType: UInt16, Sendable {
     case forceSensor                = 0x003f
     case colorLightMatrix           = 0x0040
     case smallAngularMotor          = 0x0041
+    case moveHubUnknown0042         = 0x0042
     case marioUnknown0046           = 0x0046
     case marioAccelerometer         = 0x0047
     case marioColorBarcodeSensor    = 0x0049
@@ -133,6 +134,8 @@ extension IOType: CustomStringConvertible {
             return "Color Light Matrix"
         case .smallAngularMotor:
             return "Small Angular Motor"
+        case .moveHubUnknown0042:
+            return "Unknown 0x0042"
         case .marioUnknown0046:
             return "Unknown 0x0046"
         case .marioAccelerometer:
