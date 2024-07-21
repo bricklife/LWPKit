@@ -5,7 +5,7 @@ import Foundation
 /// [2. Advertising](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#document-2-Advertising)
 public struct ManufacturerData: Sendable {
     public let buttonState: Bool
-    public let systemTypeID: SystemType.RawValue
+    public let systemTypeID: SystemType.ID
     public let deviceCapabilities: DeviceCapabilities
     public let lastNetwork: UInt8
     public let status: Status
