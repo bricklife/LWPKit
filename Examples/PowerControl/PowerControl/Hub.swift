@@ -104,6 +104,8 @@ extension Hub: CBPeripheralDelegate {
         
         // Step 6: Enable Notifications
         peripheral.setNotifyValue(true, for: characteristic)
+        
+        setupHubProperties()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -128,6 +130,9 @@ extension Hub {
         do {
             let header = try CommonMessageHeader(data)
             switch header.messageType {
+            case .hubProperties:
+                let message = try HubPropertyMessage(data)
+                print("- Hub Property: \(message.property) = \(message.value?.description ?? "-")")
             case .hubAttachedIO:
                 let message = try HubAttachedIOMessage(data)
                 switch message.event {
@@ -149,6 +154,17 @@ extension Hub {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    func setupHubProperties() {
+        Task {
+            do {
+                write(try HubPropertyMessage(property: .firmwareVersion, operation: .requestUpdate).data())
+                write(try HubPropertyMessage(property: .batteryVoltage, operation: .enableUpdates).data())
+            } catch {
+                print(error)
+            }
         }
     }
     
