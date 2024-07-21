@@ -137,13 +137,13 @@ extension Hub {
                 let message = try HubAttachedIOMessage(data)
                 switch message.event {
                 case let .attachedIO(ioTypeID, _, _):
-                    let ioType = IOType(rawValue: ioTypeID)
+                    let ioType = IOType(id: ioTypeID)
                     print("- Attached I/O: \(ioType?.description ?? "Unknown") (\(ioTypeID)) on port \(message.portID)")
                     if let ioType, StartPower.canUse(for: ioType) {
                         powerSupportedPorts.insert(message.portID)
                     }
                 case let .attachedVirtualIO(ioTypeID, firstPortID, secondPortID):
-                    let ioType = IOType(rawValue: ioTypeID)
+                    let ioType = IOType(id: ioTypeID)
                     print("- Attached Virtual I/O: \(ioType?.description ?? "Unknown") (\(ioTypeID)) on port \(message.portID) (\(firstPortID)+\(secondPortID))")
                 case .detachedIO:
                     print("- Detached I/O from port \(message.portID)")
