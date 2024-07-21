@@ -150,7 +150,7 @@ extension Hub {
                     powerSupportedPorts.remove(message.portID)
                 }
             default:
-                print("- Unhandled message:", header.messageType, header.messageLength)
+                print("- Unhandled message: \(header.messageType) (message length = \(header.messageLength))")
             }
         } catch {
             print(error)
