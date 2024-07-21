@@ -24,8 +24,8 @@ extension HubAttachedIOMessage {
 extension HubAttachedIOMessage {
     public enum Event: Sendable {
         case detachedIO
-        case attachedIO(ioTypeID: IOType.RawValue, hardwareRevision: VersionNumber, softwareRevision: VersionNumber)
-        case attachedVirtualIO(ioTypeID: IOType.RawValue, firstPortID: Port.ID, secondPortID: Port.ID)
+        case attachedIO(ioTypeID: IOType.ID, hardwareRevision: VersionNumber, softwareRevision: VersionNumber)
+        case attachedVirtualIO(ioTypeID: IOType.ID, firstPortID: Port.ID, secondPortID: Port.ID)
 
         public init(eventID: IOEvent, payload: some ByteCollection) throws {
             let view = payload.view

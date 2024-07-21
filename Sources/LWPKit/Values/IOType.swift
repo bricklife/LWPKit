@@ -1,7 +1,7 @@
 /// IO Type
 ///
 /// [3.8.4. IO Type ID](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#io-type-id)
-public enum IOType: UInt16, Sendable {
+public enum IOType: UInt16, IDRepresentable, Sendable {
     case mediumMotor                = 0x0001
     case trainMotor                 = 0x0002
     case light                      = 0x0008
